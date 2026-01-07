@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ranay Majji | Portfolio</title>
+  <meta name="description" content="Portfolio of Ranay Majji — Data Science & Data Engineering. Projects, experience, and contact." />
+  <style>
+    :root{
+      --bg: #0b0f19;
+      --panel: rgba(255,255,255,0.06);
+      --panel2: rgba(255,255,255,0.10);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.70);
+      --faint: rgba(255,255,255,0.55);
+      --border: rgba(255,255,255,0.12);
+      --shadow: 0 18px 60px rgba(0,0,0,0.45);
+      --radius: 18px;
+      --max: 1120px;
+      --gap: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(120, 87, 255, 0.22), transparent 60%),
+        radial-gradient(900px 500px at 80% 20%, rgba(0, 209, 255, 0.18), transparent 55%),
+        radial-gradient(900px 500px at 50% 90%, rgba(255, 140, 0, 0.14), transparent 60%),
+        var(--bg);
+      line-height: 1.55;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .container{
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 28px 0 64px;
+    }
+
+    /* Top nav */
+    .nav{
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(to bottom, rgba(11,15,25,0.78), rgba(11,15,25,0.35));
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner{
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 14px;
+    }
+    .brand{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+    }
+    .dot{
+      width: 10px; height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.90);
+      box-shadow: 0 0 0 6px rgba(255,255,255,0.08);
+    }
+    .nav-links{
+      display:flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .nav-links a{
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+    }
+    .nav-links a:hover{
+      border-color: var(--border);
+      background: rgba(255,255,255,0.05);
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    /* Hero */
+    .hero{
+      margin-top: 22px;
+      display:grid;
+      grid-template-columns: 1.4fr 0.6fr;
+      gap: var(--gap);
+      align-items: stretch;
+    }
+    .card{
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--panel), rgba(255,255,255,0.03));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-main{
+      padding: 26px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-main:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(700px 280px at 30% 0%, rgba(255,255,255,0.10), transparent 60%);
+      pointer-events:none;
+    }
+
+    .kicker{
+      display:inline-flex;
+      gap: 8px;
+      align-items:center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    h1{
+      margin: 12px 0 10px;
+      font-size: clamp(32px, 4vw, 46px);
+      line-height: 1.08;
+      letter-spacing: -0.6px;
+    }
+    .subtitle{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 68ch;
+    }
+    .cta-row{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      position: relative;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .btn:hover{
+      background: rgba(255,255,255,0.10);
+      text-decoration: none;
+    }
+    .btn.primary{
+      background: rgba(255,255,255,0.14);
+      border-color: rgba(255,255,255,0.20);
+    }
+
+    /* Photo panel */
+    .photo{
+      padding: 18px;
+      display:flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .photo-box{
+      aspect-ratio: 1 / 1;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding: 14px;
+      color: var(--faint);
+      font-size: 13px;
+    }
+    .photo-box img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+    }
+    .photo small{ color: var(--muted); }
+
+    /* Sections */
+    section{ margin-top: 18px; }
+    .section-card{ padding: 22px; }
+    .section-title{
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+    }
+    .section-title span{
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Grid blocks */
+    .grid{
+      display:grid;
+      gap: var(--gap);
+    }
+    .grid.two{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .item{
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+    }
+    .item h3{
+      margin: 0 0 6px;
+      font-size: 15px;
+    }
+    .meta{
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+    .bullets{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .chips{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .chip{
+      font-size: 12px;
+      color: var(--muted);
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      white-space: nowrap;
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+      padding: 18px 0 8px;
+    }
+    .contact{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items:center;
+    }
+    .contact a{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      text-decoration: none;
+    }
+    .contact a:hover{
+      background: rgba(255,255,255,0.10);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero{ grid-template-columns: 1fr; }
+      .grid.two, .grid.three{ grid-template-columns: 1fr; }
+      .nav-inner{ flex-direction: column; align-items: flex-start; }
+      .nav-links{ justify-content: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav" aria-label="Site navigation">
+    <div class="nav-inner">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Ranay Majji</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <div class="hero" style="grid-template-columns: 1fr;">
+      <div class="card hero-main" style="display: flex; gap: 32px; align-items: center; width: 100%; box-sizing: border-box;">
+        <div style="flex: 1 1 0; min-width: 0;">
+          <div class="kicker">Data Science • Data Engineering • AI Automation</div>
+          <h1>Building practical, data-driven products, from pipelines to models to dashboards.</h1>
+          <p class="subtitle">
+            I’m Ranay Majji, a data scientist / data engineer with hands-on experience building ETL pipelines,
+            analytics dashboards, and ML solutions across cloud and modern data stacks.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn primary" href="#projects">View Projects</a>
+            <a class="btn" href="#contact">Contact Me</a>
+            <!-- Optional: link to your resume PDF if you host it somewhere -->
+            <a class="btn" href="https://drive.google.com/file/d/1aQfxH_SFzCYPLkFkBktL1VznEBknBExv/view?usp=sharing" target="_blank" rel="noopener">Download Resume</a>
+          </div>
+
+          <div class="chips" style="margin-top:16px;">
+            <span class="chip">Python</span>
+            <span class="chip">SQL</span>
+            <span class="chip">Azure</span>
+            <span class="chip">Snowflake</span>
+            <span class="chip">Databricks</span>
+            <span class="chip">Streamlit</span>
+            <span class="chip">XGBoost</span>
+          </div>
+        </div>
+        <div class="photo-box" style="max-width: 380px; flex: 0 0 380px;">
+          <img src="DSC03315.JPG" alt="Ranay Majji" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" class="card section-card">
+      <div class="section-title">
+        <h2>About Me</h2>
+      </div>
+      <p style="color: var(--muted); margin: 0;">
+        I'm a Purdue University alumni and current University of Colorado Boulder graduate student who enjoys turning messy, real-world data 
+        into clean pipelines, useful analytics, and models that help teams
+        make better decisions. My work has spanned social media + sales analytics, cloud tooling, and building
+        automation using AI workflows.
+      </p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="card section-card">
+      <div class="section-title">
+        <h2>Projects</h2>
+      </div>
+
+      <div class="grid two">
+        <article class="item">
+          <h3>Powerlifting Scoring Coefficient Optimization</h3>
+          <div class="meta">Jan 2025 • ML modeling + fairness optimization</div>
+          <ul class="bullets">
+            <li>Built a performance-based strength scoring model to improve ranking fairness.</li>
+            <li>Used scikit-learn and XGBoost with logarithmic + polynomial regression approaches.</li>
+            <li>Optimized scoring across bodyweight, gender, and competition type (raw/equipped).</li>
+          </ul>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">scikit-learn</span>
+            <span class="chip">XGBoost</span>
+            <span class="chip">Regression</span>
+            <span class="chip">Fairness</span>
+          </div>
+          <!-- Optional links -->
+          <!-- <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn" href="#" target="_blank" rel="noopener">GitHub</a
+            <a class="btn" href="#" target="_blank" rel="noopener">Demo</a>
+          </div> -->
+        </article>
+
+        <!-- Placeholder for future projects
+        <article class="item" style="border-style:dashed;">
+          <h3>Next Project Placeholder</h3>
+          <div class="meta">Add more projects as you build them</div>
+          <p style="margin:0; color: var(--muted); font-size:14px;">
+            Duplicate the project card and update the title, date, bullets, and tags.
+            This section is designed to scale as your portfolio grows.
+          </p>
+        </article> -->
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="card section-card">
+      <div class="section-title">
+        <h2>Experience</h2>
+      </div>
+
+      <div class="grid two">
+        <article class="item">
+          <h3>Cerium Networks — Data &amp; AI Apprentice</h3>
+          <div class="meta">May 2025 – Dec 2025</div>
+          <ul class="bullets">
+            <li>Trained across AI, DevOps, and Data Engineering via hands-on labs and certifications.</li>
+            <li>Built internal AI tools + automation scripts using OpenAI, Azure AI Studio, Copilot Studio, Databricks, and Python.</li>
+            <li>Developed ISO27001 and CCPA security requirements for Microsoft Fabric workspaces.</li>
+            <li>Supported automation, data pipelines, and analytics architecture projects.</li>
+          </ul>
+        </article>
+
+        <article class="item">
+          <h3>Red Aspen — Digital Marketing Data Analyst</h3>
+          <div class="meta">Jun 2023 – Sep 2024</div>
+          <ul class="bullets">
+            <li>Built automated ETL pipelines using Python, SQL, and Snowflake for social data from the Sprout Social API.</li>
+            <li>Developed predictive sales models and customer segmentation using demographic data (US Census API).</li>
+            <li>Designed Streamlit dashboards for real-time reporting on performance, product insights, and sales forecasts.</li>
+            <li>Improved BI workflows by integrating Excel, Snowflake notebooks, and Streamlit for live updates.</li>
+          </ul>
+        </article>
+
+        <article class="item">
+          <h3>Mobalytics — Gaming Market Research Analyst Extern</h3>
+          <div class="meta">Apr 2024 – May 2024</div>
+          <ul class="bullets">
+            <li>Analyzed gaming KPIs, revenue models, and player psychology to identify market drivers.</li>
+            <li>Benchmarked competitors and created comparative performance insights.</li>
+            <li>Presented a data-driven market expansion strategy to stakeholders.</li>
+          </ul>
+        </article>
+
+        <!-- <article class="item" style="border-style:dashed;">
+          <h3>Experience Placeholder</h3>
+          <div class="meta">Add future roles, internships, or leadership</div>
+          <p style="margin:0; color: var(--muted); font-size:14px;">
+            Add new roles by copying an existing card and updating the bullets.
+          </p> -->
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="card section-card">
+      <div class="section-title">
+        <h2>Skills &amp; Tools</h2>
+      </div>
+
+      <div class="grid three">
+        <div class="item">
+          <h3>Languages</h3>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">SQL</span>
+            <span class="chip">R</span>
+            <span class="chip">Java</span>
+            <span class="chip">SAS</span>
+            <span class="chip">PowerShell</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <h3>ML &amp; Analytics</h3>
+          <div class="chips">
+            <span class="chip">OpenAI</span>
+            <span class="chip">Pandas</span>
+            <span class="chip">NumPy</span>
+            <span class="chip">scikit-learn</span>
+            <span class="chip">XGBoost</span>
+            <span class="chip">TensorFlow</span>
+            <span class="chip">PySpark</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <h3>Data / Cloud / Viz</h3>
+          <div class="chips">
+            <span class="chip">Azure</span>
+            <span class="chip">Snowflake</span>
+            <span class="chip">PostgreSQL</span>
+            <span class="chip">MongoDB</span>
+            <span class="chip">BigQuery</span>
+            <span class="chip">Microsoft Fabric</span>
+            <span class="chip">Tableau</span>
+            <span class="chip">Power BI</span>
+            <span class="chip">Matplotlib</span>
+            <span class="chip">Seaborn</span>
+            <span class="chip">Streamlit</span>
+            <span class="chip">Git</span>
+            <span class="chip">Docker</span>
+            <span class="chip">Jupyter</span>
+            <span class="chip">Postman</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="card section-card" id="certs">
+      <div class="section-title">
+        <h2>Certifications</h2>
+      </div>
+      <div class="grid two">
+        <div class="item">
+          <h3>Microsoft</h3>
+          <div class="chips">
+            <span class="chip">AZ-900</span>
+            <span class="chip">DP-900</span>
+          </div>
+        </div>
+        <div class="item">
+          <h3>IBM</h3>
+          <div class="chips">
+            <span class="chip">watsonx Orchestrate Sales</span>
+            <span class="chip">watsonx Technical Sales</span>
+            <span class="chip">watsonx Generative AI Sales</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="card section-card">
+      <div class="section-title">
+        <h2>Education</h2>
+      </div>
+
+      <div class="grid two">
+        <article class="item">
+          <h3>University of Colorado Boulder</h3>
+          <div class="meta">M.S., Data Science • Aug 2025 – Present • Boulder, CO</div>
+          <p style="margin:0; color: var(--muted); font-size:14px;">
+            Focus areas: data science, engineering, and applied analytics.
+          </p>
+        </article>
+
+        <article class="item">
+          <h3>Purdue University</h3>
+          <div class="meta">B.S., Data Science • Aug 2021 – May 2025 • West Lafayette, IN</div>
+          <p style="margin:0; color: var(--muted); font-size:14px;">
+            Strong foundation in statistics, ML, and scalable analytics.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="card section-card">
+      <div class="section-title">
+        <h2>Contact</h2>
+      </div>
+
+      <div class="contact">
+        <a href="mailto:rmajji2002@gmail.com" aria-label="Email Ranay">Email: rmajji2002@gmail.com</a>
+        <a href="https://linkedin.com/in/ranay-majji" target="_blank" rel="noopener" aria-label="Ranay's LinkedIn">
+          LinkedIn
+        </a>
+        <a href="https://github.com/majjiranay" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Ranay Majji • Built with HTML/CSS • Last updated: <span id="updated"></span>
+    </footer>
+  </main>
+
+  <script>
+    // Small UX touch: auto-update footer year / last updated
+    const now = new Date();
+    document.getElementById("year").textContent = now.getFullYear();
+    document.getElementById("updated").textContent = now.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+  </script>
+</body>
+</html>
